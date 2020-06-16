@@ -28,15 +28,14 @@ class App implements Callable<Integer> {
     @Option(names = "--output-format", description = "Output format to print, possible values: ${COMPLETION-CANDIDATES}")
     private OutputFormat outputFormat = OutputFormat.properties;
 
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 
     @Override
-    public Integer call() throws Exception { // your business logic goes here...
-
+    public Integer call() throws Exception {
         EnvParser parser = new EnvParser();
         parser.setPrefix(prefix);
         parser.setDoLowerCase(doLowerCase);

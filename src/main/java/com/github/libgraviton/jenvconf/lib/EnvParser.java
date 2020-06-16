@@ -51,6 +51,11 @@ public class EnvParser {
   }
 
   private String parseVarName(String varName) {
+    // strip prefix
+    if (!prefix.isEmpty()) {
+      varName = varName.substring(prefix.length());
+    }
+
     // replace "__" with "." and lowercase
     varName = varName.replaceAll("__", ".");
 
@@ -81,7 +86,7 @@ public class EnvParser {
       return true;
     }
 
-    if (prefix.equals(varName.substring(0, prefix.length()))) {
+    if (varName.length() > prefix.length() && prefix.equals(varName.substring(0, prefix.length()))) {
       return true;
     }
 

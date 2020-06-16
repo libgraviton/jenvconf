@@ -56,5 +56,20 @@ public class EnvParserTest extends TestCase
         for (Entry<String, String> entry : sut.getParsed().entrySet()) {
             assertEquals(entry.getValue(), entry.getKey());
         }
+
+        // with prefix
+        envValues.clear();
+        envValues.put("ENVNAME", "ENVNAME");
+        envValues.put("PREFIX_ENV__NAME", "ENV.NAME");
+        envValues.put("PREFIX_ENV___NAME", "ENV._NAME");
+
+        sut = new EnvParser(envValues);
+        sut.setPrefix("PREFIX_");
+        sut.setDoLowerCase(false);
+        assertEquals(envValues.size() - 1, sut.getParsed().size());
+
+        for (Entry<String, String> entry : sut.getParsed().entrySet()) {
+            assertEquals(entry.getValue(), entry.getKey());
+        }
     }
 }
