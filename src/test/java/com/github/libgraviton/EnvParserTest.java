@@ -18,6 +18,7 @@ public class EnvParserTest extends TestCase
 
         //*********** with lowercase and camel case
         envValues.put("ENVNAME", "envname");
+        envValues.put("ENV_NAME", "envName");
         envValues.put("ENV__NAME", "env.name");
         envValues.put("ENV___NAME", "env.Name");
 
@@ -33,6 +34,7 @@ public class EnvParserTest extends TestCase
         //*********** no camelcase
         envValues.clear();
         envValues.put("ENVNAME", "envname");
+        envValues.put("ENV_NAME", "env_name");
         envValues.put("ENV__NAME", "env.name");
         envValues.put("ENV___NAME", "env._name");
 
@@ -46,6 +48,7 @@ public class EnvParserTest extends TestCase
         //*********** no camelcase, no lowercase
         envValues.clear();
         envValues.put("ENVNAME", "ENVNAME");
+        envValues.put("ENV_NAME", "ENV_NAME");
         envValues.put("ENV__NAME", "ENV.NAME");
         envValues.put("ENV___NAME", "ENV._NAME");
 
@@ -60,6 +63,7 @@ public class EnvParserTest extends TestCase
         // with prefix
         envValues.clear();
         envValues.put("ENVNAME", "ENVNAME");
+        envValues.put("PREFIX_ENV_NAME", "ENV_NAME");
         envValues.put("PREFIX_ENV__NAME", "ENV.NAME");
         envValues.put("PREFIX_ENV___NAME", "ENV._NAME");
 
