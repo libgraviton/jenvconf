@@ -6,7 +6,7 @@
 
   <groupId>com.github.libgraviton</groupId>
   <artifactId>jenvconf</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>java-env-configurator</name>
