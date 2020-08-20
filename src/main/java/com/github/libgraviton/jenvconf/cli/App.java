@@ -2,6 +2,8 @@ package com.github.libgraviton.jenvconf.cli;
 
 import com.github.libgraviton.jenvconf.lib.EnvParser;
 import java.util.Map.Entry;
+
+import com.github.libgraviton.jenvconf.util.ShellEscaper;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -35,7 +37,7 @@ class App implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws Exception {
+    public Integer call() {
         EnvParser parser = new EnvParser();
         parser.setPrefix(prefix);
         parser.setDoLowerCase(doLowerCase);
@@ -43,7 +45,7 @@ class App implements Callable<Integer> {
 
         if (outputFormat.equals(OutputFormat.cli)) {
             for (Entry<String, String> entry : parser.getParsed().entrySet()) {
-                System.out.printf("-D%s=%s ", entry.getKey(), entry.getValue());
+                System.out.printf("-D%s='%s' ", entry.getKey(), ShellEscaper.SHELL_ESCAPE.escape(entry.getValue()));
             }
         }
         
